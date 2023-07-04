@@ -7,12 +7,39 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 
-	import { AppShell } from '@skeletonlabs/skeleton';
+	import { AppShell, Modal } from '@skeletonlabs/skeleton';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import Background from '$lib/components/Background.svelte';
+	import {
+		Toast,
+		toastStore,
+		modalStore,
+		type ToastSettings,
+		type ModalSettings
+	} from '@skeletonlabs/skeleton';
+
+	const modal: ModalSettings = {
+		type: 'alert',
+		title: 'Missing Features',
+		body: '- Manual Reset<br>- Reset sync with server<br>- Time remaining (progress bar)'
+	};
+
+	const t: ToastSettings = {
+		message: 'This app is Work In Progress. Still missing some key features and not ready to use',
+		action: {
+			label: "See what's missing",
+			response: () => modalStore.trigger(modal)
+		},
+		// timeout: 5000,
+		background: 'variant-filled-surface'
+	};
+
+	toastStore.trigger(t);
 </script>
 
 <Background />
+<Toast />
+<Modal />
 <AppShell slotSidebarLeft="bg-surface-500/5" slotPageContent="bg-transparent">
 	<svelte:fragment slot="sidebarLeft">
 		<div class="h-full">

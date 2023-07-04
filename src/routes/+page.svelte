@@ -8,8 +8,10 @@
 	<title>All | ToF TODOs</title>
 </svelte:head>
 
-<div class="flex flex-row items-start justify-start">
+<div class="flex flex-col lg:flex-row lg:items-start lg:justify-start">
 	<Daily />
+	<div class="m-2 lg:hidden"></div>
 	<Weekly />
+	<div class="m-2 lg:hidden"></div>
 	<Monthly />
 </div>

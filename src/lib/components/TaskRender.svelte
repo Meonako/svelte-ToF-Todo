@@ -18,56 +18,54 @@
 	}
 </script>
 
-<!-- <div class="flex items-center lg:py-10"> -->
-	<div
-		class="mx-auto bg-surface-500 bg-opacity-50 border-collapse table-fixed lg:w-3/4 backdrop-blur"
-		in:fly={{ y: 200, delay: 150 }}
-		out:scale={{ duration: 150 }}
-	>
-		{#each tasks as task}
-			<hr />
-			<div class="item">
-				<h3 class="h3 text-center p-2">{task.name}</h3>
-				<div class="flex justify-center items-center pb-4">
-					{#if task.type === 'number' && typeof task.value === 'number' && task.max}
-						<Button bind:value={task.value} max={task.max} />
-					{:else if task.type === 'boolean' && typeof task.value === 'boolean'}
-						<Checkbox
+<div
+	class="mx-auto bg-surface-500 bg-opacity-50 border-collapse table-fixed w-full lg:w-3/4 backdrop-blur"
+	in:fly={{ y: 200, delay: 150 }}
+	out:scale={{ duration: 150 }}
+>
+	{#each tasks as task}
+		<hr />
+		<div class="item">
+			<h3 class="h3 text-center p-2">{task.name}</h3>
+			<div class="flex justify-center items-center pb-4">
+				{#if task.type === 'number' && typeof task.value === 'number' && task.max}
+					<Button bind:value={task.value} max={task.max} />
+				{:else if task.type === 'boolean' && typeof task.value === 'boolean'}
+					<Checkbox
+						bind:value={task.value}
+						text={typeof task.label == 'string' && task.label ? task.label : ''}
+					/>
+				{:else if task.type === 'booleanList' && typeof task.value === 'object'}
+					<div>
+						{#each task.value as value, idx}
+							<Checkbox
+								bind:value
+								text={typeof task.label == 'object' && task.label[idx] ? task.label[idx] : ''}
+							/>
+						{/each}
+					</div>
+				{:else if task.type === 'numberWithButtons' && task.max && task.buttons}
+					<div>
+						<input
+							class="input text-center p-1 text-lg"
+							type="number"
 							bind:value={task.value}
-							text={typeof task.label == 'string' && task.label ? task.label : ''}
+							on:input={() => {
+								// @ts-ignore
+								const newValue = handleInput(task.value, task.max);
+								task.value = newValue;
+							}}
 						/>
-					{:else if task.type === 'booleanList' && typeof task.value === 'object'}
-						<div>
-							{#each task.value as value, idx}
-								<Checkbox
-									bind:value
-									text={typeof task.label == 'object' && task.label[idx] ? task.label[idx] : ''}
-								/>
+						<br />
+						<hr />
+						<div class="flex flex-row justify-center">
+							{#each task.buttons as button}
+								<SupportButton bind:value={task.value} max={task.max} step={button} />
 							{/each}
 						</div>
-					{:else if task.type === 'numberWithButtons' && task.max && task.buttons}
-						<div>
-							<input
-								class="input text-center p-1 text-lg"
-								type="number"
-								bind:value={task.value}
-								on:input={() => {
-									// @ts-ignore
-									const newValue = handleInput(task.value, task.max);
-									task.value = newValue;
-								}}
-							/>
-							<br />
-							<hr />
-							<div class="flex flex-row justify-center">
-								{#each task.buttons as button}
-									<SupportButton bind:value={task.value} max={task.max} step={button} />
-								{/each}
-							</div>
-						</div>
-					{/if}
-				</div>
+					</div>
+				{/if}
 			</div>
-		{/each}
-	</div>
-<!-- </div> -->
+		</div>
+	{/each}
+</div>
