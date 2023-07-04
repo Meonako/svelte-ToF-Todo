@@ -1,7 +1,8 @@
 <script lang="ts">
 	import TaskRender from '$lib/components/TaskRender.svelte';
 
-	import { daily } from '$lib/store/daily';
+	import { weekly } from '$lib/store/weekly';
 </script>
 
-<TaskRender tasks={$daily.Daily} />
+
+<TaskRender tasks={$weekly.Weekly} />

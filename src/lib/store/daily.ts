@@ -4,7 +4,6 @@ import { getDefault } from '../utils/getDefault';
 import type { Base, Task } from '../utils/interface';
 
 const KEY = 'daily';
-const LAST_UPDATE = '2023-07-02T20:46:03.772Z';
 
 export interface DailyList extends Base {
 	Daily: Task[];

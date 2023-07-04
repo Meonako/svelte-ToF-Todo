@@ -1,53 +1,66 @@
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 import { getDefault } from '../utils/getDefault';
-import type { Base } from '../utils/interface';
+import type { Base, Task } from '../utils/interface';
 
 const KEY = 'weekly';
 
-export interface Weekly extends Base {
-	DreamMachine: number;
-	Raid: number;
-	SequentialPhantasm: number;
-	CrewQuest: number;
-	MSECQuest: number;
-	VoidRift: boolean;
-	FrontierClash: boolean;
-	ArtificialIsland: {
-		Monster: boolean;
-		Metal: boolean;
-		Fiber: boolean;
-		Energy: boolean;
-		Supply: boolean;
-		Accessory: boolean;
-	};
+export interface WeeklyList extends Base {
+	Weekly: Task[];
 }
 
-const weeklyDefault: Weekly = {
-	DreamMachine: 0,
-	Raid: 0,
-	SequentialPhantasm: 0,
-	CrewQuest: 0,
-	MSECQuest: 0,
-	VoidRift: false,
-	FrontierClash: false,
-	ArtificialIsland: {
-		Monster: false,
-		Metal: false,
-		Fiber: false,
-		Energy: false,
-		Supply: false,
-		Accessory: false
-	},
-	Time: new Date()
-};
-
-export const weeklyMax = {
-	DreamMachine: 3,
-	Raid: 1,
-	SequentialPhantasm: 4,
-	CrewQuest: 4,
-	MSECQuest: 3
+const weeklyDefault: WeeklyList = {
+	Time: new Date(),
+	Weekly: [
+		{
+			name: 'Dream Machine',
+			type: 'number',
+			value: 0,
+			max: 3
+		},
+		{
+			name: "Sequential Phantasm",
+			type: "number",
+			value: 0,
+			max: 4
+		},
+		{
+			name: "Crew Quest",
+			type: "number",
+			value: 0,
+			max: 4
+		},
+		{
+			name: "M-SEC Quest",
+			type: "number",
+			value: 0,
+			max: 3
+		},
+		{
+			name: 'Raid',
+			type: 'boolean',
+			value: false,
+			label: "Clear"
+		},
+		{
+			name: 'Void Rift',
+			type: 'boolean',
+			value: false,
+			label: "Clear"
+		},
+		{
+			name: 'Frontier Clash',
+			type: 'boolean',
+			value: false,
+			label: "Clear"
+		},
+		{
+			name: 'Artificial Island',
+			type: 'booleanList',
+			value: [false, false, false, false, false, false],
+			label: ["[Monster] Clear", "[Shop] Metal", "[Shop] Fiber", "[Shop] Energy", "[Shop] Supply", "[Shop] Accessory"]
+		},
+	]
 };
 
 export const weekly = writable(getDefault(KEY, weeklyDefault));
