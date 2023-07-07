@@ -2,32 +2,25 @@ import type { Base } from '$lib/utils/interface';
 
 export function reset<Type extends Base>(data: Type): Type {
 	for (const v of data.Value) {
-		for (let value of Object.values(v)) {
-			console.log(`Resetting: ${typeof value}: `, value);
-			if (value.contructor == Object) {
-				// @ts-ignore
-				value = resetObject(value);
-				continue;
-			} else if (Array.isArray(value)) {
-				// @ts-ignore
-				value = resetArray(value);
-				continue;
-			}
+		if (Array.isArray(v.value)) {
+			// @ts-ignore
+			v.value = resetArray(v.value);
+			continue;
+		}
 
-			switch (typeof value) {
-				case 'number':
-					// @ts-ignore
-					value = 0;
-					break;
-				case 'boolean':
-					// @ts-ignore
-					value = false;
-					break;
-				case 'string':
-					break;
-				default:
-					console.log(`Unknown Type: ${typeof value}: `, value);
-			}
+		switch (typeof v.value) {
+			case 'number':
+				// @ts-ignore
+				v.value = 0;
+				break;
+			case 'boolean':
+				// @ts-ignore
+				v.value = false;
+				break;
+			case 'string':
+				break;
+			default:
+				console.log(`Unknown Type: ${typeof v.value}: `, v.value);
 		}
 	}
 	return data;
