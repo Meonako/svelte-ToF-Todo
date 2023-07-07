@@ -4,6 +4,7 @@ import { getDefault } from '../utils/getDefault';
 import type { Base, Task } from '../utils/interface';
 
 const KEY = 'daily';
+const LAST_UPDATE = '2023-07-07T04:34:21.229Z';
 
 const dailyDefault: Base = {
 	Time: new Date(),
@@ -55,7 +56,7 @@ const dailyDefault: Base = {
 	]
 };
 
-export const daily = writable(getDefault(KEY, dailyDefault));
+export const daily = writable(getDefault(KEY, dailyDefault, new Date(LAST_UPDATE)));
 
 if (browser) {
 	daily.subscribe((value) => window.localStorage.setItem(KEY, JSON.stringify(value)));

@@ -5,6 +5,7 @@
 	import Checkbox from './Checkbox.svelte';
 	import SupportButton from './SupportButton.svelte';
 	import type { Writable } from 'svelte/store';
+	import { reset } from '$lib/utils/reset';
 
 	export let tasks: Writable<Base>;
 
@@ -24,6 +25,15 @@
 	in:fly={{ y: 200, delay: 150 }}
 	out:scale={{ duration: 150 }}
 >
+	<button
+		class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error"
+		on:click={() => {
+			const resetted = reset($tasks);
+			tasks.set(resetted)
+		}}
+	>
+		Reset
+	</button>
 	{#each $tasks.Value as task}
 		<hr />
 		<div class="item">
