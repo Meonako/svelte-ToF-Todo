@@ -1,11 +1,12 @@
 <script lang="ts">
-	import type { Task } from '$lib/utils/interface';
+	import type { Base, Task } from '$lib/utils/interface';
 	import { fly, scale } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import Checkbox from './Checkbox.svelte';
 	import SupportButton from './SupportButton.svelte';
+	import type { Writable } from 'svelte/store';
 
-	export let tasks: Task[];
+	export let tasks: Writable<Base>;
 
 	function handleInput(value: number, max: number): number {
 		if (value > max) {
@@ -23,7 +24,7 @@
 	in:fly={{ y: 200, delay: 150 }}
 	out:scale={{ duration: 150 }}
 >
-	{#each tasks as task}
+	{#each $tasks.Value as task}
 		<hr />
 		<div class="item">
 			<h3 class="h3 text-center p-2">{task.name}</h3>

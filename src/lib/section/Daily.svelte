@@ -4,4 +4,4 @@
 	import { daily } from '$lib/store/daily';
 </script>
 
-<TaskRender tasks={$daily.Daily} />
+<TaskRender tasks={daily} />

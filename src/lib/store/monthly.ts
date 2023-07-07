@@ -5,13 +5,9 @@ import type { Base, Task } from '../utils/interface';
 
 const KEY = 'monthly';
 
-export interface MonthlyList extends Base {
-	Monthly: Task[];
-}
-
-const monthlyDefault: MonthlyList = {
+const monthlyDefault: Base = {
 	Time: new Date(),
-	Monthly: [
+	Value: [
 		{
 			name: 'Void Abyss',
 			type: 'number',

@@ -5,13 +5,9 @@ import type { Base, Task } from '../utils/interface';
 
 const KEY = 'daily';
 
-export interface DailyList extends Base {
-	Daily: Task[];
-}
-
-const dailyDefault: DailyList = {
+const dailyDefault: Base = {
 	Time: new Date(),
-	Daily: [
+	Value: [
 		{
 			name: 'Bounty',
 			type: 'number',

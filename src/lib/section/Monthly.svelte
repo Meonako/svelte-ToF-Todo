@@ -4,5 +4,4 @@
 	import { monthly } from '$lib/store/monthly';
 </script>
 
-
-<TaskRender tasks={$monthly.Monthly} />
+<TaskRender tasks={monthly} />

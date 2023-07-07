@@ -4,5 +4,4 @@
 	import { weekly } from '$lib/store/weekly';
 </script>
 
-
-<TaskRender tasks={$weekly.Weekly} />
+<TaskRender tasks={weekly} />

@@ -6,13 +6,9 @@ import type { Base, Task } from '../utils/interface';
 const KEY = 'weekly';
 const LAST_UPDATE = '2023-07-04T04:04:29.775Z';
 
-export interface WeeklyList extends Base {
-	Weekly: Task[];
-}
-
-const weeklyDefault: WeeklyList = {
+const weeklyDefault: Base = {
 	Time: new Date(),
-	Weekly: [
+	Value: [
 		{
 			name: 'Dream Machine',
 			type: 'number',

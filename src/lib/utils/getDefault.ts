@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import type { Base } from './interface';
+import type { Base, Task } from './interface';
 
 export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Date): T {
 	if (!browser) return def;
@@ -14,15 +14,34 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		data.Time = new Date(data.Time);
 	}
 
-	if (lastUpdate && data.Time < lastUpdate) return def
-
-	for (const key in def) {
-		if (!Object.keys(data).includes(key)) {
-			console.log('Current data not include: ', key);
-			// @ts-ignore
-			data[key] = def[key];
-		}
+	if (lastUpdate && data.Time < lastUpdate) {
+		return def;
 	}
+
+	for (let i = 0; i < def.Value.length; i++) {
+		const defaultValue = def.Value[i];
+		const currentValue = data.Value[i];
+
+		for (const key of Object.keys(defaultValue)) {
+			if (!Object.keys(currentValue).includes(key)) {
+				console.log('Current data not include: ', key);
+				// @ts-ignore
+				currentValue[key] = defaultValue[key];
+			}
+		}
+
+		for (const key of Object.keys(currentValue)) {
+			if (!Object.keys(defaultValue).includes(key)) {
+				console.log('Current data not include: ', key);
+				delete data.Value[i][key as keyof Task]
+			}
+		}
+
+		def.Value[i] = defaultValue;
+		data.Value[i] = currentValue;
+	}
+
+	console.log('Returning', data);
 
 	return data;
 }
