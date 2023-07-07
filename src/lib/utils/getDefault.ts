@@ -16,6 +16,8 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 
 	if (lastUpdate && data.Time < lastUpdate) {
 		return def;
+	} else {
+		data.Time = new Date();
 	}
 
 	for (let i = 0; i < def.Value.length; i++) {
@@ -40,8 +42,6 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		def.Value[i] = defaultValue;
 		data.Value[i] = currentValue;
 	}
-
-	console.log('Returning', data);
 
 	return data;
 }
