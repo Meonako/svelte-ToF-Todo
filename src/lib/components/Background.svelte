@@ -1,11 +1,11 @@
 <script>
-	import { backgroundType, VIDEO_DEFAULT } from '$lib/store/background';
+	import { backgroundType, IMAGE_DEFAULT, VIDEO_DEFAULT } from '$lib/store/background';
 </script>
 
 {#if $backgroundType.type === 'video'}
 	<video autoplay loop muted playsinline src={$backgroundType.props ?? VIDEO_DEFAULT} />
 {:else if $backgroundType.type === 'image'}
-	<img src={$backgroundType.props} alt="bg" />
+	<img src={$backgroundType.props ?? IMAGE_DEFAULT} alt="bg" />
 {/if}
 
 <style>
