@@ -4,7 +4,7 @@ import { getDefault } from '../utils/getDefault';
 import type { Base, Task } from '../utils/interface';
 
 const KEY = 'monthly';
-const LAST_UPDATE = '2023-07-07T04:34:21.229Z';
+const LAST_UPDATE = '2023-07-07T05:05:46.402Z';
 
 const monthlyDefault: Base = {
 	Time: new Date(),
