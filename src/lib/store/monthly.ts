@@ -19,14 +19,14 @@ const monthlyDefault: Base = {
 			name: 'Apex League',
 			type: 'boolean',
 			value: false,
-			label: "Done"
+			label: 'Done'
 		},
 		{
 			name: 'Artificial Island',
 			type: 'booleanList',
 			value: [false, false, false, false],
-			label: ["[Shop] Metal", "[Shop] Fiber", "[Shop] Energy", "[Shop] Supply"]
-		},
+			label: ['[Shop] Metal', '[Shop] Fiber', '[Shop] Energy', '[Shop] Supply']
+		}
 	]
 };
 

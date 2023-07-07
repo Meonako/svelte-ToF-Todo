@@ -1,6 +1,6 @@
 import { join } from 'path';
 import skeleton from '@skeletonlabs/skeleton/tailwind/skeleton.cjs';
-import twform from "@tailwindcss/forms"
+import twform from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {

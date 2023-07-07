@@ -5,12 +5,12 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
-	let progress = tweened(value, {
+	const progress = tweened(value, {
 		duration: 300,
 		easing: cubicOut
 	});
 
-	$: progress.set(value)
+	$: progress.set(value);
 </script>
 
 <div class="container text-center lg:w-3/4">

@@ -3,22 +3,14 @@
 </script>
 
 {#if $backgroundType.type === 'video'}
-	<video
-		autoplay
-		loop
-		muted
-		playsinline
-		src="{$backgroundType.props ?? VIDEO_DEFAULT}"
-	/>
+	<video autoplay loop muted playsinline src={$backgroundType.props ?? VIDEO_DEFAULT} />
 {:else if $backgroundType.type === 'image'}
-	<img
-		src="{$backgroundType.props}"
-		alt="bg"
-	/>
+	<img src={$backgroundType.props} alt="bg" />
 {/if}
 
 <style>
-	video, img {
+	video,
+	img {
 		position: fixed;
 		z-index: -1;
 		object-fit: cover;

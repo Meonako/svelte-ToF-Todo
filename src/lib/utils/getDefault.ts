@@ -33,7 +33,7 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		for (const key of Object.keys(currentValue)) {
 			if (!Object.keys(defaultValue).includes(key)) {
 				console.log('Current data not include: ', key);
-				delete data.Value[i][key as keyof Task]
+				delete data.Value[i][key as keyof Task];
 			}
 		}
 

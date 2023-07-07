@@ -29,7 +29,7 @@
 		class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error"
 		on:click={() => {
 			const resetted = reset($tasks);
-			tasks.set(resetted)
+			tasks.set(resetted);
 		}}
 	>
 		Reset
