@@ -5,12 +5,12 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
-	const progress = tweened(0, {
+	let progress = tweened(value, {
 		duration: 300,
 		easing: cubicOut
 	});
 
-	progress.set(value);
+	$: progress.set(value)
 </script>
 
 <div class="container text-center lg:w-3/4">
@@ -35,7 +35,7 @@
 	>
 		-
 	</button>
-	<div class="inline-block w-2"></div>
+	<div class="inline-block w-2" />
 	<button
 		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
