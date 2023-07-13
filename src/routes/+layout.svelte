@@ -21,7 +21,7 @@
 	const modal: ModalSettings = {
 		type: 'alert',
 		title: 'Missing Features',
-		body: '- Manual Reset<br>- Reset sync with server<br>- Time remaining (progress bar)'
+		body: '<br>- Reset sync with server<br>- Progress Bar turn red when time is about to run out'
 	};
 
 	const t: ToastSettings = {

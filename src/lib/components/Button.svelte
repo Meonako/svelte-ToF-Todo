@@ -5,53 +5,54 @@
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
-	const progress = tweened(value, {
+	const progress = tweened(0, {
 		duration: 300,
 		easing: cubicOut
 	});
 
-	$: progress.set(value);
+	$: {
+		if (value > max) {
+			value = max;
+		} else if (value < 0) {
+			value = 0;
+		}
+		progress.set(value);
+	}
 </script>
 
 <div class="container text-center lg:w-3/4">
-	<h4 class="h4 mb-1">{value} / {max}</h4>
+	<h4 class="h4 mb-1">
+		{value} / {max}
+	</h4>
 	<button
-		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary"
 		on:click={() => {
 			value = 0;
-			progress.set(value);
 		}}
 	>
 		Min
 	</button>
 	<button
-		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary"
 		on:click={() => {
 			if (value <= 0) return;
 
 			value--;
-			progress.set(value);
 		}}
 	>
 		-
 	</button>
 	<div class="inline-block w-2" />
 	<button
-		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			if (value >= max) return;
 
 			value++;
-			progress.set(value);
 		}}
 	>
 		+
 	</button>
 	<button
-		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			value = max;
-			progress.set(value);
 		}}
 	>
 		Max
@@ -59,12 +60,16 @@
 	<progress value={$progress} {max} />
 </div>
 
-<style>
+<style lang="postcss">
+	button {
+		@apply btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2;
+	}
+	
 	progress::-webkit-progress-bar {
-		background-color: rgb(var(--color-primary-900));
+		@apply bg-primary-900;
 	}
 
 	progress::-webkit-progress-value {
-		background-color: rgb(var(--color-primary-600));
+		@apply bg-primary-600;
 	}
 </style>

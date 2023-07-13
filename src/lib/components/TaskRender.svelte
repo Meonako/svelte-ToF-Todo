@@ -1,13 +1,26 @@
 <script lang="ts">
-	import type { Base, Task } from '$lib/utils/interface';
+	import type { Base } from '$lib/utils/interface';
 	import { fly, scale } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import Checkbox from './Checkbox.svelte';
 	import SupportButton from './SupportButton.svelte';
-	import type { Writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import { reset } from '$lib/utils/reset';
+	import { onMount } from 'svelte';
 
 	export let tasks: Writable<Base>;
+	export let resetTime: Date;
+	export let max: number;
+
+	const now = new Date();
+	const millisecondsDiff = resetTime.getTime() - now.getTime();
+	const secondsDiff = writable(Math.floor(millisecondsDiff / 1000));
+
+	$: seconds = $secondsDiff % 60;
+	$: minutes = Math.floor(($secondsDiff / 60) % 60);
+	$: hours = Math.floor($secondsDiff / 60 / 60);
+	$: displayHours = hours > 24 ? hours % 24 : hours;
+	$: days = hours > 24 ? Math.floor(hours / 24) : 0;
 
 	function handleInput(value: number, max: number): number {
 		if (value > max) {
@@ -18,6 +31,12 @@
 
 		return value;
 	}
+
+	onMount(() => {
+		const interval = setInterval(() => secondsDiff.update((x) => x - 1), 1000);
+
+		return () => clearInterval(interval);
+	});
 </script>
 
 <div
@@ -25,15 +44,21 @@
 	in:fly={{ y: 200, delay: 150 }}
 	out:scale={{ duration: 150 }}
 >
-	<button
-		class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error"
-		on:click={() => {
-			const resetted = reset($tasks);
-			tasks.set(resetted);
-		}}
-	>
-		Reset
-	</button>
+	<div class="text-center">
+		<h3 class="h3">
+			{days ? `${days} days ` : ''}{displayHours} hours {minutes} minutes {seconds} seconds remaining
+		</h3>
+		<progress class="w-11/12" value={$secondsDiff} {max} />
+		<button
+			class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
+			on:click={() => {
+				const resetted = reset($tasks);
+				tasks.set(resetted);
+			}}
+		>
+			Reset
+		</button>
+	</div>
 	{#each $tasks.Value as task}
 		<hr />
 		<div class="item">
@@ -80,3 +105,17 @@
 		</div>
 	{/each}
 </div>
+
+<style>
+	progress::-webkit-progress-bar {
+		@apply bg-primary-900;
+	}
+
+	progress::-webkit-progress-value {
+		@apply bg-primary-600;
+	}
+
+	progress.red::-webkit-progress-value {
+		@apply bg-error-500;
+	}
+</style>

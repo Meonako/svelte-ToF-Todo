@@ -24,6 +24,11 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		const defaultValue = def.Value[i];
 		const currentValue = data.Value[i];
 
+		if (defaultValue != currentValue) {
+			data.Value[i] = defaultValue
+			continue;
+		}
+
 		for (const key of Object.keys(defaultValue)) {
 			if (!Object.keys(currentValue).includes(key)) {
 				console.log('Current data not include: ', key);
