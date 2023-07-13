@@ -25,6 +25,7 @@
 		{value} / {max}
 	</h4>
 	<button
+		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			value = 0;
 		}}
@@ -32,6 +33,7 @@
 		Min
 	</button>
 	<button
+		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			if (value <= 0) return;
 
@@ -42,6 +44,7 @@
 	</button>
 	<div class="inline-block w-2" />
 	<button
+		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			if (value >= max) return;
 
@@ -51,6 +54,7 @@
 		+
 	</button>
 	<button
+		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"
 		on:click={() => {
 			value = max;
 		}}
@@ -61,10 +65,6 @@
 </div>
 
 <style lang="postcss">
-	button {
-		@apply btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2;
-	}
-	
 	progress::-webkit-progress-bar {
 		@apply bg-primary-900;
 	}

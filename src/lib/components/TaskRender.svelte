@@ -106,16 +106,12 @@
 	{/each}
 </div>
 
-<style>
+<style lang="postcss">
 	progress::-webkit-progress-bar {
 		@apply bg-primary-900;
 	}
 
 	progress::-webkit-progress-value {
 		@apply bg-primary-600;
-	}
-
-	progress.red::-webkit-progress-value {
-		@apply bg-error-500;
 	}
 </style>
