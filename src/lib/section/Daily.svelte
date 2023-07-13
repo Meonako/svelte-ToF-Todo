@@ -5,4 +5,4 @@
 	import { RESET_TIME } from '$lib/reset/daily';
 </script>
 
-<TaskRender tasks={daily} resetTime={RESET_TIME} max={86400} />
+<TaskRender tasks={daily} resetTime={RESET_TIME} max={86400} resetLabel="Daily" />

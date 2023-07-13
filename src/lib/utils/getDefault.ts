@@ -25,7 +25,7 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		const currentValue = data.Value[i];
 
 		if (defaultValue != currentValue) {
-			data.Value[i] = defaultValue
+			data.Value[i] = defaultValue;
 			continue;
 		}
 

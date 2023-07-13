@@ -5,4 +5,4 @@
 	import { RESET_TIME } from '$lib/reset/monthly';
 </script>
 
-<TaskRender tasks={monthly} resetTime={RESET_TIME} max={86400 * 30} />
+<TaskRender tasks={monthly} resetTime={RESET_TIME} max={86400 * 30} resetLabel="Monthly" />

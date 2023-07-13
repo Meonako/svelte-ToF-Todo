@@ -7,10 +7,12 @@
 	import { writable, type Writable } from 'svelte/store';
 	import { reset } from '$lib/utils/reset';
 	import { onMount } from 'svelte';
+	import { modalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
 	export let tasks: Writable<Base>;
 	export let resetTime: Date;
 	export let max: number;
+	export let resetLabel: string;
 
 	const now = new Date();
 	const millisecondsDiff = resetTime.getTime() - now.getTime();
@@ -30,6 +32,19 @@
 		}
 
 		return value;
+	}
+
+	const modal: ModalSettings = {
+		type: 'confirm',
+		title: `Reset <span class="text-green-500">${resetLabel}</span>?`,
+		body: `Are you sure you want to reset <strong class="text-green-400 underline">${resetLabel}</strong>?`,
+		backdropClasses: 'backdrop-blur', 
+		response: (r) => {
+			if (r) {
+				const resetted = reset($tasks);
+				tasks.set(resetted);
+			}
+		}
 	}
 
 	onMount(() => {
@@ -52,8 +67,7 @@
 		<button
 			class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
 			on:click={() => {
-				const resetted = reset($tasks);
-				tasks.set(resetted);
+				modalStore.trigger(modal)
 			}}
 		>
 			Reset

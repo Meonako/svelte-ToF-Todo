@@ -18,21 +18,21 @@ export function reset<Type extends Base>(data: Type): Type {
 				v.value = false;
 				break;
 			case 'string':
-				v.value = parseInt(v.value)
+				v.value = parseInt(v.value);
 				break;
 			case 'undefined':
 				switch (v.type) {
 					case 'number':
-						v.value = 0
+						v.value = 0;
 						break;
 					case 'boolean':
-						v.value = false
+						v.value = false;
 						break;
 					case 'numberWithButtons':
-						v.value = 0
+						v.value = 0;
 						break;
 					case 'booleanList':
-						v.value = [false]
+						v.value = [false];
 						break;
 				}
 			default:
