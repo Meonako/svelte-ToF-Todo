@@ -38,14 +38,14 @@
 		type: 'confirm',
 		title: `Reset <span class="text-green-500">${resetLabel}</span>?`,
 		body: `Are you sure you want to reset <strong class="text-green-400 underline">${resetLabel}</strong>?`,
-		backdropClasses: 'backdrop-blur', 
+		backdropClasses: 'backdrop-blur',
 		response: (r) => {
 			if (r) {
 				const resetted = reset($tasks);
 				tasks.set(resetted);
 			}
 		}
-	}
+	};
 
 	onMount(() => {
 		const interval = setInterval(() => secondsDiff.update((x) => x - 1), 1000);
@@ -55,7 +55,7 @@
 </script>
 
 <div
-	class="mx-auto bg-surface-500 bg-opacity-50 border-collapse table-fixed w-full lg:w-3/4 backdrop-blur"
+	class="mx-auto bg-surface-500 bg-opacity-50 border-collapse table-fixed w-full lg:w-3/4 backdrop-blur lg:py-4"
 	in:fly={{ y: 200, delay: 150 }}
 	out:scale={{ duration: 150 }}
 >
@@ -67,7 +67,7 @@
 		<button
 			class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
 			on:click={() => {
-				modalStore.trigger(modal)
+				modalStore.trigger(modal);
 			}}
 		>
 			Reset

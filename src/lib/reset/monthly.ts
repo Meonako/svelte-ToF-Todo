@@ -1,13 +1,8 @@
-import { getOffsetInHours } from '$lib/utils/offset';
-
-const now = new Date();
+import { setResetTime, setTimeOffset } from '$lib/utils/time';
 
 function init(): Date {
-	const offset = getOffsetInHours(now);
-
-	if (offset != 7) {
-		now.setHours(now.getHours() + (7 - offset));
-	}
+	const now = new Date();
+	setTimeOffset(now);
 
 	const date = now.getDate();
 	const hour = now.getHours();
@@ -19,7 +14,7 @@ function init(): Date {
 		now.setMonth(now.getMonth() + 1);
 	}
 
-	now.setHours(5, 0, 0, 0);
+	setResetTime(now);
 
 	return now;
 }

@@ -20,14 +20,11 @@ export function getDefault<T extends Base>(key: string, def: T, lastUpdate?: Dat
 		data.Time = new Date();
 	}
 
+	if (!data.Value) return def;
+
 	for (let i = 0; i < def.Value.length; i++) {
 		const defaultValue = def.Value[i];
 		const currentValue = data.Value[i];
-
-		if (defaultValue != currentValue) {
-			data.Value[i] = defaultValue;
-			continue;
-		}
 
 		for (const key of Object.keys(defaultValue)) {
 			if (!Object.keys(currentValue).includes(key)) {
