@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
-import { getDefault } from '../utils/getDefault';
-import type { Base } from '../utils/interface';
+import { getDefault } from '$lib/utils/getDefault';
+import type { Base } from '$lib/utils/interface';
 import { WEEKLY } from '$lib/config';
 
 const KEY = 'weekly';
@@ -15,5 +15,5 @@ const weeklyDefault: Base = {
 export const weekly = writable(getDefault(KEY, weeklyDefault, new Date(LAST_UPDATE)));
 
 if (browser) {
-	weekly.subscribe((value) => window.localStorage.setItem(KEY, JSON.stringify(value)));
+	weekly.subscribe((value) => localStorage.setItem(KEY, JSON.stringify(value)));
 }
