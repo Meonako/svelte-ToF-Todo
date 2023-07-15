@@ -9,7 +9,7 @@ function init(): Date {
 
 	if (date == 1 && hour >= 5) {
 		now.setMonth(now.getMonth() + 1);
-	} else {
+	} else if (date != 1) {
 		now.setDate(1);
 		now.setMonth(now.getMonth() + 1);
 	}

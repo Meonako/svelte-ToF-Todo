@@ -60,6 +60,13 @@
 	out:scale={{ duration: 150 }}
 >
 	<div class="text-center">
+		<h3 class="h3 text-lime-500">
+			[
+			<span class="text-blue-500">SEA</span>
+			<span class="text-white">-</span>
+			<span class="text-yellow-300">Odyssey</span>
+			]
+		</h3>
 		<h3 class="h3">
 			{days ? `${days} days ` : ''}{displayHours} hours {minutes} minutes {seconds} seconds remaining
 		</h3>
@@ -76,28 +83,28 @@
 	{#each $tasks.Value as task}
 		<hr />
 		<div class="item">
-			<h3 class="h3 text-center p-2">{task.name}</h3>
-			<div class="flex justify-center items-center pb-4">
+			<div class="flex flex-col justify-center items-center pb-4">
 				{#if task.type === 'number' && typeof task.value === 'number' && task.max}
+					<h3 class="h3 text-center p-2">{task.name}</h3>
 					<Button bind:value={task.value} max={task.max} />
 				{:else if task.type === 'boolean' && typeof task.value === 'boolean'}
-					<Checkbox
-						bind:value={task.value}
-						text={typeof task.label == 'string' && task.label ? task.label : ''}
-					/>
+					<Checkbox bind:value={task.value} text={task.name} />
 				{:else if task.type === 'booleanList' && typeof task.value === 'object'}
+					<h3 class="h3 text-center p-2">{task.name}</h3>
 					<div>
 						{#each task.value as value, idx}
 							<Checkbox
 								bind:value
 								text={typeof task.label == 'object' && task.label[idx] ? task.label[idx] : ''}
+								single={true}
 							/>
 						{/each}
 					</div>
 				{:else if task.type === 'numberWithButtons' && task.max && task.buttons}
+					<h3 class="h3 text-center p-2">{task.name}</h3>
 					<div>
 						<input
-							class="input text-center p-1 text-lg"
+							class="input text-center p-1 text-lg border border-primary-500"
 							type="number"
 							bind:value={task.value}
 							on:input={() => {

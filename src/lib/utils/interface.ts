@@ -5,7 +5,6 @@ export interface Base {
 
 interface TaskBase {
 	name: string;
-	type: string;
 }
 
 interface numberProps extends TaskBase {
@@ -24,7 +23,6 @@ interface numberWithButtonsProps extends TaskBase {
 interface booleanProps extends TaskBase {
 	type: 'boolean';
 	value: boolean;
-	label: string;
 }
 
 interface booleanListProps extends TaskBase {
@@ -33,5 +31,4 @@ interface booleanListProps extends TaskBase {
 	label: string[];
 }
 
-export type Task = TaskBase &
-	(numberProps | numberWithButtonsProps | booleanProps | booleanListProps);
+export type Task = numberProps | numberWithButtonsProps | booleanProps | booleanListProps;

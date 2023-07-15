@@ -4,9 +4,9 @@
 	export let step: number;
 </script>
 
-<div>
+<div class="w-full">
 	<button
-		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary"
+		class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary w-full"
 		on:click={() => {
 			let newValue = value + step;
 			if (newValue > max) {
