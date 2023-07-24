@@ -39,7 +39,7 @@
 
 <Background />
 <Toast />
-<Modal />
+<Modal buttonPositive="variant-filled-success" duration={200} flyY={300} padding="px-10 py-7" />
 <AppShell slotSidebarLeft="bg-surface-500/5" slotPageContent="bg-transparent">
 	<svelte:fragment slot="sidebarLeft">
 		<div class="h-full">

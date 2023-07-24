@@ -23,7 +23,6 @@ export const DAILY: Task[] = [
 		name: 'Artificial Island Resource',
 		type: 'boolean',
 		value: false,
-		label: 'Claim'
 	},
 	{
 		name: 'Gift',
@@ -73,34 +72,29 @@ export const WEEKLY: Task[] = [
 		max: 3
 	},
 	{
-		name: 'Comissary Shop',
+		name: 'Commissary Shop',
 		type: 'boolean',
 		value: false,
-		label: 'Bought'
 	},
 	{
 		name: 'Raid',
 		type: 'boolean',
 		value: false,
-		label: 'Clear'
 	},
 	{
 		name: 'Void Rift',
 		type: 'boolean',
 		value: false,
-		label: 'Clear'
 	},
 	{
 		name: 'Frontier Clash',
 		type: 'boolean',
 		value: false,
-		label: 'Clear'
 	},
 	{
 		name: 'Domain 9 Fountain Pillar',
 		type: 'boolean',
 		value: false,
-		label: 'Clear'
 	},
 	{
 		name: 'Artificial Island',
@@ -128,7 +122,6 @@ export const MONTHLY: Task[] = [
 		name: 'Apex League',
 		type: 'boolean',
 		value: false,
-		label: 'Done'
 	},
 	{
 		name: 'Artificial Island',

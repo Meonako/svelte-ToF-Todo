@@ -1,3 +1,5 @@
+export const COMMON_RESET_HOUR = 5
+
 function getOffsetInHours(date: Date): number {
 	return Math.abs(date.getTimezoneOffset()) / 60;
 }
@@ -11,5 +13,5 @@ export function setTimeOffset(date: Date) {
 }
 
 export function setResetTime(date: Date) {
-	date.setHours(4, 0, 0, 0);
+	date.setHours(COMMON_RESET_HOUR, 0, 0, 0);
 }

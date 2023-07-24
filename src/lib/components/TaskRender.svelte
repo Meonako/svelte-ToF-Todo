@@ -14,9 +14,12 @@
 	export let max: number;
 	export let resetLabel: string;
 
-	const now = new Date();
-	const millisecondsDiff = resetTime.getTime() - now.getTime();
-	const secondsDiff = writable(Math.floor(millisecondsDiff / 1000));
+	resetLabel = resetLabel.toUpperCase();
+
+	let now = new Date();
+	const secondsDiff = writable(0);
+	$: millisecondsDiff = resetTime.getTime() - now.getTime();
+	$: secondsDiff.set(Math.floor(millisecondsDiff / 1000));
 
 	$: seconds = $secondsDiff % 60;
 	$: minutes = Math.floor(($secondsDiff / 60) % 60);
@@ -36,7 +39,7 @@
 
 	const modal: ModalSettings = {
 		type: 'confirm',
-		title: `Reset <span class="text-green-500">${resetLabel}</span>?`,
+		title: `Reset <span class="text-green-500 underline">${resetLabel}</span>?`,
 		body: `Are you sure you want to reset <strong class="text-green-400 underline">${resetLabel}</strong>?`,
 		backdropClasses: 'backdrop-blur',
 		response: (r) => {
@@ -48,7 +51,9 @@
 	};
 
 	onMount(() => {
-		const interval = setInterval(() => secondsDiff.update((x) => x - 1), 1000);
+		const interval = setInterval(() => {
+			now = new Date();
+		}, 1000);
 
 		return () => clearInterval(interval);
 	});
@@ -81,8 +86,7 @@
 		</button>
 	</div>
 	{#each $tasks.Value as task}
-		<hr />
-		<div class="item">
+		<div class="item border-b border-primary-500 last:border-b-0">
 			<div class="flex flex-col justify-center items-center pb-4">
 				{#if task.type === 'number' && typeof task.value === 'number' && task.max}
 					<h3 class="h3 text-center p-2">{task.name}</h3>
