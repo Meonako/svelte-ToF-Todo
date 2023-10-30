@@ -1,34 +1,26 @@
-export interface Base {
-	Time: Date;
-	Value: Task[];
+export interface Store {
+    Time: Date;
+    Value: Record<string, any>;
 }
 
-interface TaskBase {
-	name: string;
+interface numberProps {
+    type: "number";
+    max: number;
 }
 
-interface numberProps extends TaskBase {
-	type: 'number';
-	value: number;
-	max: number;
+interface numberWithButtonsProps {
+    type: "numberWithButtons";
+    max: number;
+    buttons: number[];
 }
 
-interface numberWithButtonsProps extends TaskBase {
-	type: 'numberWithButtons';
-	value: number;
-	max: number;
-	buttons: number[];
+interface booleanProps {
+    type: "boolean";
 }
 
-interface booleanProps extends TaskBase {
-	type: 'boolean';
-	value: boolean;
-}
-
-interface booleanListProps extends TaskBase {
-	type: 'booleanList';
-	value: boolean[];
-	label: string[];
+interface booleanListProps {
+    type: "booleanList";
+    label: string[];
 }
 
 export type Task = numberProps | numberWithButtonsProps | booleanProps | booleanListProps;

@@ -1,9 +1,11 @@
 <script>
-	import Daily from '$lib/section/Daily.svelte';
+    export let data;
+
+    import Daily from "$lib/section/Daily.svelte";
 </script>
 
 <svelte:head>
-	<title>Daily | ToF TODOs</title>
+    <title>Daily | ToF TODOs</title>
 </svelte:head>
 
-<Daily />
+<Daily tasks={data.DAILY} />

@@ -1,9 +1,11 @@
 <script>
-	import Monthly from '$lib/section/Monthly.svelte';
+    export let data;
+
+    import Monthly from "$lib/section/Monthly.svelte";
 </script>
 
 <svelte:head>
-	<title>Monthly | ToF TODOs</title>
+    <title>Monthly | ToF TODOs</title>
 </svelte:head>
 
-<Monthly />
+<Monthly tasks={data.MONTHLY} />

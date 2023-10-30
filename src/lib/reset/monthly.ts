@@ -1,22 +1,22 @@
-import { setResetTime, setTimeOffset } from '$lib/utils/time';
+import { setResetTime, setTimeOffset } from "$lib/utils/time";
 
 function init(): Date {
-	const now = new Date();
-	setTimeOffset(now);
+    const now = new Date();
+    setTimeOffset(now);
 
-	const date = now.getDate();
-	const hour = now.getHours();
+    const date = now.getDate();
+    const hour = now.getHours();
 
-	if (date == 1 && hour >= 5) {
-		now.setMonth(now.getMonth() + 1);
-	} else if (date != 1) {
-		now.setDate(1);
-		now.setMonth(now.getMonth() + 1);
-	}
+    if (date == 1 && hour >= 5) {
+        now.setMonth(now.getMonth() + 1);
+    } else if (date != 1) {
+        now.setDate(1);
+        now.setMonth(now.getMonth() + 1);
+    }
 
-	setResetTime(now);
+    setResetTime(now);
 
-	return now;
+    return now;
 }
 
 export const RESET_TIME = init();
