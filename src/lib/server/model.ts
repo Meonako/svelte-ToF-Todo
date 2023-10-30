@@ -28,7 +28,7 @@ export const DAILY: Record<string, Task> = {
         label: [
             "[Aesperia] Banges: Black Market",
             "[Aesperia] Navia: Cetus Island",
-            "[Domain 9] Ignisville: Taylor"
+            "[Domain 9] Ignisville: Festival"
         ]
     },
     "Support Points": {

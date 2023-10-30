@@ -1,7 +1,7 @@
 import { localStorageStore } from "@skeletonlabs/skeleton";
 
 export const IMAGE_DEFAULT =
-    "https://cdn.discordapp.com/attachments/1124903904971333632/1125529873054715956/3.0bg.jpg";
+    "https://www.toweroffantasy-global.com/images/3.3bg.jpg";
 export const VIDEO_DEFAULT =
     "https://cdn.discordapp.com/attachments/1124903904971333632/1124903942829117550/bg.mp4";
 

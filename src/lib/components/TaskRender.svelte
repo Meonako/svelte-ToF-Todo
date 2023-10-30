@@ -106,9 +106,10 @@
     </div>
     {#each Object.entries(tasks) as [name, task]}
         <div class="item border-b border-primary-500 last:border-b-0">
-            <div class="flex flex-col justify-center items-center pb-4">
+            <div class="flex flex-col justify-center items-center pt-2 pb-4">
                 {#if task.type === "number" && task.max}
-                    <h3 class="h3 text-center p-2">{name}</h3>
+                    <h3 class="h3 text-center px-2 pt-2">{name}</h3>
+                    <div class="h-px w-1/5 bg-secondary-700" />
                     <Button bind:value={$tasksValue.Value[name]} max={task.max} />
                 {:else if task.type === "boolean"}
                     <Checkbox bind:value={$tasksValue.Value[name]} text={name} />

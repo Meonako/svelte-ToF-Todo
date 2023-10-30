@@ -1,8 +1,6 @@
 <script lang="ts">
-    import Checkbox from "$lib/components/Checkbox.svelte";
     import { VIDEO_DEFAULT, IMAGE_DEFAULT, backgroundType } from "$lib/store/background";
     import { SETTINGS } from "$lib/store/settings";
-    import { scale } from "svelte/transition";
 
     let selected = $backgroundType.type;
     let link = "";
