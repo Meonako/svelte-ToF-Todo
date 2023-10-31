@@ -21,8 +21,8 @@
 </script>
 
 <div class="container text-center lg:w-3/4">
-    <h4 class="h4 mb-1">
-        {value} / {max}
+    <h4 class="h3 text-secondary-300 mb-1">
+        <strong>{value}</strong> / <strong>{max}</strong>
     </h4>
     <button
         class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary mb-2"

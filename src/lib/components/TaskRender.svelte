@@ -108,13 +108,12 @@
         <div class="item border-b border-primary-500 last:border-b-0">
             <div class="flex flex-col justify-center items-center pt-2 pb-4">
                 {#if task.type === "number" && task.max}
-                    <h3 class="h3 text-center px-2 pt-2">{name}</h3>
-                    <div class="h-px w-1/5 bg-secondary-700" />
+                    <h3>{name}</h3>
                     <Button bind:value={$tasksValue.Value[name]} max={task.max} />
                 {:else if task.type === "boolean"}
                     <Checkbox bind:value={$tasksValue.Value[name]} text={name} />
                 {:else if task.type === "booleanList"}
-                    <h3 class="h3 text-center p-2">{name}</h3>
+                    <h3 class="pb-2">{name}</h3>
                     <div>
                         {#each task.label as value, idx}
                             <Checkbox
@@ -127,7 +126,7 @@
                         {/each}
                     </div>
                 {:else if task.type === "numberWithButtons" && task.max && task.buttons}
-                    <h3 class="h3 text-center p-2">{name}</h3>
+                    <h3 class="pb-2">{name}</h3>
                     <div>
                         <input
                             class="input text-center p-1 text-lg border border-primary-500"
@@ -164,5 +163,9 @@
 
     progress::-webkit-progress-value {
         @apply bg-primary-600;
+    }
+
+    h3 {
+        @apply h3 underline font-bold text-center px-2 pt-2 text-primary-300;
     }
 </style>
