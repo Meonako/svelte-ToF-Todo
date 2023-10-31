@@ -1,6 +1,7 @@
 <script lang="ts">
     import { VIDEO_DEFAULT, IMAGE_DEFAULT, backgroundType } from "$lib/store/background";
     import { SETTINGS } from "$lib/store/settings";
+    import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
 
     let selected = $backgroundType.type;
     let link = "";
@@ -10,6 +11,28 @@
     } else if ($backgroundType.type == "video") {
         link = $backgroundType.props ?? VIDEO_DEFAULT;
     }
+
+    const clearStorageModal: ModalSettings = {
+        type: "confirm",
+        title: "Confirmation",
+        body: `You sure? This will remove <span class="font-bold text-red-500">ALL: PROGRESS, SETTINGS</span>`,
+        response(r: any) {
+            if (!r) return;
+
+            if (!localStorage) {
+                console.log("No localStorage");
+                return;
+            }
+
+            if (!location) {
+                console.log("No location");
+                return;
+            }
+
+            localStorage.clear();
+            location.reload();
+        }
+    };
 </script>
 
 <svelte:head>
@@ -124,5 +147,17 @@
                 />
             </label>
         {/if}
+    </div>
+
+    <div
+        class="bg-surface-500 bg-opacity-70 border border-primary-500 py-4 px-6 w-full lg:w-3/5 text-center"
+    >
+        <h2 class="h2 font-bold">Having a problem?</h2>
+        <div class="h-px w-[90%] bg-secondary-400 my-2 mx-auto" />
+        <h3 class="h3">Try clearing your storage! Click the button below.</h3>
+        <button
+            class="btn variant-filled-error mt-2 border border-red-500 text-white"
+            on:click={() => modalStore.trigger(clearStorageModal)}>Here!</button
+        >
     </div>
 </div>
