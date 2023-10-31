@@ -1,27 +1,27 @@
 import type { Store } from "$lib/utils/interface";
 
 export function reset(data: Store): Store {
-    for (const v of Object.values(data.Value)) {
-        if (Array.isArray(v.value)) {
+    for (let [k, v] of Object.entries(data.Value)) {
+        if (Array.isArray(v)) {
             // @ts-ignore
-            v.value = resetArray(v.value);
+            data.Value[k] = resetArray(v);
             continue;
         }
 
-        switch (typeof v.value) {
+        switch (typeof v) {
             case "number":
                 // @ts-ignore
-                v.value = 0;
+                data.Value[k] = 0;
                 break;
             case "boolean":
                 // @ts-ignore
-                v.value = false;
+                data.Value[k] = false;
                 break;
             case "string":
-                v.value = parseInt(v.value);
+                data.Value[k] = parseInt(v);
                 break;
             default:
-                console.log(`Unknown Type: ${typeof v.value}: `, v.value);
+                console.log(`Unknown Type: ${typeof v}: `, v);
         }
     }
     return data;
@@ -59,7 +59,10 @@ function resetObject(data: Object): Object {
 }
 
 function resetArray(data: any[]): any[] {
+    console.log(`Resetting array: ${data}`);
     for (let i = 0; i < data.length; i++) {
+        if (data[i] == null || typeof data[i] == "undefined") continue;
+
         if (data[i].contructor == Object) {
             // @ts-ignore
             data[i] = resetObject(value);
