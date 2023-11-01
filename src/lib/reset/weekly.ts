@@ -13,7 +13,6 @@ enum Day {
 function init(): Date {
     const now = new Date();
     setTimeOffset(now);
-    console.log(now);
 
     const day = now.getDay();
     const hour = now.getHours();
@@ -32,9 +31,6 @@ function init(): Date {
     }
 
     setResetTime(now);
-
-    console.log(now);
-    console.log("--------------------------------------");
     return now;
 }
 

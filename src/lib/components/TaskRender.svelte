@@ -130,9 +130,10 @@
                         {/each}
                     </div>
                 {:else if task.type === "numberWithButtons" && task.max && task.buttons}
-                    <h3 class="h3 underline font-bold text-center px-2 pt-2 text-primary-300 pb-2">
+                    <h3 class="h3 underline font-bold text-center px-2 pt-2 text-primary-300">
                         {name}
                     </h3>
+                    <span class="pb-2">Max: <strong class="text-center">{task.max}</strong></span>
                     <div>
                         <input
                             class="input text-center p-1 text-lg border border-primary-500"
@@ -154,6 +155,11 @@
                                     step={button}
                                 />
                             {/each}
+                            <SupportButton
+                                bind:value={$tasksValue.Value[name]}
+                                max={task.max}
+                                step={task.max}
+                            />
                         </div>
                     </div>
                 {/if}
