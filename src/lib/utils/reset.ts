@@ -3,6 +3,7 @@ import type { Store } from "$lib/utils/interface";
 export function reset(data: Store): Store {
     for (let [k, v] of Object.entries(data.Value)) {
         if (Array.isArray(v)) {
+            if (v.length == 0) continue
             // @ts-ignore
             data.Value[k] = resetArray(v);
             continue;
@@ -59,7 +60,6 @@ function resetObject(data: Object): Object {
 }
 
 function resetArray(data: any[]): any[] {
-    console.log(`Resetting array: ${data}`);
     for (let i = 0; i < data.length; i++) {
         if (data[i] == null || typeof data[i] == "undefined") continue;
 
