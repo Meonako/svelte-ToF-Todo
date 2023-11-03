@@ -6,6 +6,8 @@
     import { daily } from "$lib/store/daily";
     import { RESET_TIME } from "$lib/reset/daily";
     import type { Task } from "$lib/utils/interface";
+
+    const label = "DAILY";
 </script>
 
-<TaskRender {tasks} tasksValue={daily} resetTime={RESET_TIME} max={86400} resetLabel="Daily" />
+<TaskRender {tasks} tasksValue={daily} resetTime={RESET_TIME} max={86400} {label} />

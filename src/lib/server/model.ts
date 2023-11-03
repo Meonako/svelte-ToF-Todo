@@ -41,7 +41,7 @@ export const DAILY: Record<string, Task> = {
         max: 600,
         buttons: [50, 100, 200]
     },
-    "Fantasymon": {
+    Fantasymon: {
         type: "numberWithButtons",
         max: 1000,
         buttons: [10, 150, 500]

@@ -9,7 +9,7 @@
     // Most of your app wide CSS should be put in this file
     import "../app.postcss";
 
-    import { AppShell, Modal } from "@skeletonlabs/skeleton";
+    import { AppShell, Modal, type ModalComponent } from "@skeletonlabs/skeleton";
     import Navigation from "$lib/components/Navigation.svelte";
     import Background from "$lib/components/Background.svelte";
     import {
@@ -19,6 +19,7 @@
         type ToastSettings,
         type ModalSettings
     } from "@skeletonlabs/skeleton";
+    import AddTask from "$lib/components/modal/AddTask.svelte";
     import { fly } from "svelte/transition";
     import { SETTINGS } from "$lib/store/settings";
 
@@ -40,11 +41,23 @@
     };
 
     toastStore.trigger(t);
+
+    const modalComponentRegistry: Record<string, ModalComponent> = {
+        addTask: {
+            ref: AddTask
+        }
+    };
 </script>
 
 <Background />
 <Toast />
-<Modal buttonPositive="variant-filled-success" duration={200} flyY={300} padding="px-10 py-7" />
+<Modal
+    components={modalComponentRegistry}
+    buttonPositive="variant-filled-success"
+    duration={200}
+    flyY={300}
+    padding="px-10 py-7"
+/>
 <AppShell slotSidebarLeft="bg-surface-500/5" slotPageContent="bg-transparent">
     <svelte:fragment slot="sidebarLeft">
         <div class="h-full">

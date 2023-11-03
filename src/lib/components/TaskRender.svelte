@@ -5,6 +5,7 @@
     import { writable, type Writable } from "svelte/store";
     import { reset } from "$lib/utils/reset";
     import { onMount } from "svelte";
+    import { browser } from "$app/environment";
     import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { defaultValue } from "$lib/utils/getDefault";
     import type { Store, Task } from "$lib/utils/interface";
@@ -13,29 +14,39 @@
     export let tasksValue: Writable<Store>;
     export let resetTime: Date;
     export let max: number;
-    export let resetLabel: string;
+    export let label: string;
 
-    if (Object.keys($tasksValue).length == 0) {
-        for (const [name, task] of Object.entries(tasks)) {
-            if (task.type != "booleanList") {
-                $tasksValue.Value[name] = defaultValue(task.type);
-            } else {
-                $tasksValue.Value[name] = defaultValue(task.type, task.label.length);
-            }
-        }
-    } else {
-        for (const [name, task] of Object.entries(tasks)) {
-            if ($tasksValue.Value[name]) continue;
-
-            if (task.type != "booleanList") {
-                $tasksValue.Value[name] = defaultValue(task.type);
-            } else {
-                $tasksValue.Value[name] = defaultValue(task.type, task.label.length);
-            }
+    if (browser) {
+        let items = localStorage.getItem(`c_${label}`);
+        if (items) {
+            tasks = {
+                ...tasks,
+                ...JSON.parse(localStorage.getItem(`c_${label}`) || "{}")
+            };
         }
     }
 
-    resetLabel = resetLabel.toUpperCase();
+    $: {
+        if (Object.keys($tasksValue).length == 0) {
+            for (const [name, task] of Object.entries(tasks)) {
+                if (task.type != "booleanList") {
+                    $tasksValue.Value[name] = defaultValue(task.type);
+                } else {
+                    $tasksValue.Value[name] = defaultValue(task.type, task.label.length);
+                }
+            }
+        } else {
+            for (const [name, task] of Object.entries(tasks)) {
+                if ($tasksValue.Value[name]) continue;
+
+                if (task.type != "booleanList") {
+                    $tasksValue.Value[name] = defaultValue(task.type);
+                } else {
+                    $tasksValue.Value[name] = defaultValue(task.type, task.label.length);
+                }
+            }
+        }
+    }
 
     let now = new Date();
     const secondsDiff = writable(0);
@@ -58,10 +69,10 @@
         return value;
     }
 
-    const modal: ModalSettings = {
+    const resetModal: ModalSettings = {
         type: "confirm",
-        title: `Reset <span class="text-green-500 underline">${resetLabel}</span>?`,
-        body: `Are you sure you want to reset <strong class="text-green-400 underline">${resetLabel}</strong>?`,
+        title: `Reset <span class="text-green-500 underline">${label}</span>?`,
+        body: `Are you sure you want to reset <strong class="text-green-400 underline">${label}</strong>?`,
         backdropClasses: "backdrop-blur",
         response: (r) => {
             if (r) {
@@ -95,14 +106,38 @@
             {days ? `${days} days ` : ""}{displayHours} hours {minutes} minutes {seconds} seconds remaining
         </h3>
         <progress class="w-11/12" value={$secondsDiff} {max} />
-        <button
-            class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
-            on:click={() => {
-                modalStore.trigger(modal);
-            }}
-        >
-            Reset
-        </button>
+        <div class="flex flex-row">
+            <button
+                class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
+                on:click={() => {
+                    modalStore.trigger(resetModal);
+                }}
+            >
+                Reset
+            </button>
+            <button
+                class="btn variant-ghost-primary active:variant-filled-primary lg:hover:variant-filled-primary w-full"
+                on:click={() => {
+                    modalStore.trigger({
+                        type: "component",
+                        component: "addTask",
+                        meta: {
+                            category: label
+                        },
+                        response(r) {
+                            if (r) {
+                                tasks = {
+                                    ...tasks,
+                                    ...r
+                                };
+                            }
+                        }
+                    });
+                }}
+            >
+                + Add Task
+            </button>
+        </div>
     </div>
     {#each Object.entries(tasks) as [name, task]}
         <div class="item border-b border-primary-500 last:border-b-0">
