@@ -111,7 +111,7 @@
         </AppRailAnchor>
 
         <AppRailAnchor
-            href="https://github.com/Meonako/svelte-ToF-Todo"
+            href="https://github.com/Meonako/tof-todo"
             target="_blank"
             title="Source"
         >
