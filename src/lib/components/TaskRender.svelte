@@ -26,7 +26,7 @@
         }
     }
 
-    $: {
+    function toDefaultValue() {
         if (Object.keys($tasksValue).length == 0) {
             for (const [name, task] of Object.entries(tasks)) {
                 if (task.type != "booleanList") {
@@ -47,6 +47,8 @@
             }
         }
     }
+
+    toDefaultValue();
 
     let now = new Date();
     const secondsDiff = writable(0);
@@ -130,6 +132,7 @@
                                     ...tasks,
                                     ...r
                                 };
+                                toDefaultValue()
                             }
                         }
                     });
