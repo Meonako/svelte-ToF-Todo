@@ -5,7 +5,6 @@
     import { writable, type Writable } from "svelte/store";
     import { reset } from "$lib/utils/reset";
     import { onMount } from "svelte";
-    import { browser } from "$app/environment";
     import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { defaultValue } from "$lib/utils/getDefault";
     import type { Store, Task } from "$lib/utils/interface";
@@ -15,16 +14,6 @@
     export let resetTime: Date;
     export let max: number;
     export let label: string;
-
-    if (browser) {
-        let items = localStorage.getItem(`c_${label}`);
-        if (items) {
-            tasks = {
-                ...tasks,
-                ...JSON.parse(localStorage.getItem(`c_${label}`) || "{}")
-            };
-        }
-    }
 
     function toDefaultValue() {
         if (Object.keys($tasksValue).length == 0) {
@@ -47,8 +36,6 @@
             }
         }
     }
-
-    toDefaultValue();
 
     let now = new Date();
     const secondsDiff = writable(0);
@@ -88,6 +75,16 @@
         const interval = setInterval(() => {
             now = new Date();
         }, 1000);
+
+        let items = localStorage.getItem(`c_${label}`);
+        if (items) {
+            tasks = {
+                ...tasks,
+                ...JSON.parse(localStorage.getItem(`c_${label}`) || "{}")
+            };
+        }
+
+        toDefaultValue();
 
         return () => clearInterval(interval);
     });
@@ -132,7 +129,7 @@
                                     ...tasks,
                                     ...r
                                 };
-                                toDefaultValue()
+                                toDefaultValue();
                             }
                         }
                     });
