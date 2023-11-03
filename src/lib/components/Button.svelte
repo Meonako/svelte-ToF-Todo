@@ -4,6 +4,7 @@
 
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
+    import { ProgressBar } from "@skeletonlabs/skeleton";
 
     const progress = tweened(0, {
         duration: 300,
@@ -61,15 +62,5 @@
     >
         Max
     </button>
-    <progress value={$progress} {max} />
+    <ProgressBar track={"bg-primary-900"} meter={"bg-primary-600"} value={$progress} {max} />
 </div>
-
-<style lang="postcss">
-    progress::-webkit-progress-bar {
-        @apply bg-primary-900;
-    }
-
-    progress::-webkit-progress-value {
-        @apply bg-primary-600;
-    }
-</style>

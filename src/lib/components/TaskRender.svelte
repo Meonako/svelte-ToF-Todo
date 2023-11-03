@@ -5,7 +5,7 @@
     import { writable, type Writable } from "svelte/store";
     import { reset } from "$lib/utils/reset";
     import { onMount } from "svelte";
-    import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+    import { modalStore, type ModalSettings, ProgressBar } from "@skeletonlabs/skeleton";
     import { defaultValue } from "$lib/utils/getDefault";
     import type { Store, Task } from "$lib/utils/interface";
 
@@ -106,7 +106,7 @@
         <h3 class="h3">
             {days ? `${days} days ` : ""}{displayHours} hours {minutes} minutes {seconds} seconds remaining
         </h3>
-        <progress class="w-11/12" value={$secondsDiff} {max} />
+        <ProgressBar class="w-11/12" track={"bg-primary-900"} meter={"bg-primary-600"} value={$secondsDiff} {max} />
         <div class="flex flex-row">
             <button
                 class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
@@ -204,13 +204,3 @@
         </div>
     {/each}
 </div>
-
-<style lang="postcss">
-    progress::-webkit-progress-bar {
-        @apply bg-primary-900;
-    }
-
-    progress::-webkit-progress-value {
-        @apply bg-primary-600;
-    }
-</style>
