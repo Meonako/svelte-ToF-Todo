@@ -37,6 +37,8 @@
         }
     }
 
+    toDefaultValue();
+
     let now = new Date();
     const secondsDiff = writable(0);
     $: millisecondsDiff = resetTime.getTime() - now.getTime();
@@ -80,7 +82,7 @@
         if (items) {
             tasks = {
                 ...tasks,
-                ...JSON.parse(localStorage.getItem(`c_${label}`) || "{}")
+                ...JSON.parse(items)
             };
         }
 
@@ -157,8 +159,8 @@
                         {#each task.label as value, idx}
                             <Checkbox
                                 bind:value={$tasksValue.Value[name][idx]}
-                                text={typeof task.label == "object" && task.label[idx]
-                                    ? task.label[idx]
+                                text={typeof task.label == "object" && value
+                                    ? value
                                     : ""}
                                 single={true}
                             />
