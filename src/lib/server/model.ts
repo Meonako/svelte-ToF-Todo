@@ -67,7 +67,7 @@ export const WEEKLY: Record<string, Task> = {
     },
     "Random NPC Quest": {
         type: "number",
-        max: 13
+        max: 15
     },
     "Commissary Shop": {
         type: "boolean"
