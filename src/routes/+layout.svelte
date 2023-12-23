@@ -65,18 +65,18 @@
         </div>
     </svelte:fragment>
 
-    {#if $SETTINGS.pageAnimationEnable}
+    {#if $SETTINGS.pageAnimation.enable}
         {#key data.path}
             <div
                 class="w-full h-full"
                 in:fly={{
-                    y: $SETTINGS.pageAnimationDistanceIn,
-                    duration: $SETTINGS.pageAnimationDuration,
-                    delay: $SETTINGS.pageAnimationDuration
+                    y: $SETTINGS.pageAnimation.distanceIn,
+                    duration: $SETTINGS.pageAnimation.duration,
+                    delay: $SETTINGS.pageAnimation.duration
                 }}
                 out:fly={{
-                    y: $SETTINGS.pageAnimationDistanceOut,
-                    duration: $SETTINGS.pageAnimationDuration
+                    y: $SETTINGS.pageAnimation.distanceOut,
+                    duration: $SETTINGS.pageAnimation.duration
                 }}
             >
                 <slot />

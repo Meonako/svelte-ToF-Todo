@@ -1,6 +1,5 @@
 <script>
-    export let data;
-
+    import { WEEKLY } from "$lib/model/task";
     import Weekly from "$lib/section/Weekly.svelte";
 </script>
 
@@ -8,4 +7,4 @@
     <title>Weekly | ToF TODOs</title>
 </svelte:head>
 
-<Weekly tasks={data.WEEKLY} />
+<Weekly tasks={WEEKLY} />

@@ -33,6 +33,8 @@
             location.reload();
         }
     };
+
+    $: blur = $SETTINGS.task.backgroundBlur ? " backdrop-blur" : "";
 </script>
 
 <svelte:head>
@@ -40,7 +42,27 @@
 </svelte:head>
 
 <div class="flex flex-col items-center justify-evenly w-full h-full">
-    <div class="bg-surface-500 bg-opacity-70 border border-primary-500 py-4 px-6 w-full lg:w-3/5">
+    <div
+        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
+    >
+        <h2 class="h2 text-center">General</h2>
+        <label
+            class="flex justify-center items-center space-x-2 border border-primary-500 mt-2 p-2"
+        >
+            <input class="checkbox" type="checkbox" bind:checked={$SETTINGS.task.backgroundBlur} />
+            <p>Tasks Background Blur</p>
+        </label>
+        <label>
+            <span>Background Opacity</span>
+            <input class="input" type="number" bind:value={$SETTINGS.task.backgroundOpacity} />
+        </label>
+    </div>
+
+    <div
+        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
+    >
         <h2 class="h2 text-center">Background</h2>
         <label class="label">
             <span>Type</span>
@@ -120,37 +142,45 @@
         </div>
     </div>
 
-    <div class="bg-surface-500 bg-opacity-70 border border-primary-500 py-4 px-6 w-full lg:w-3/5">
+    <div
+        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
+    >
         <h2 class="h2 text-center">Page Animation</h2>
         <!-- <Checkbox bind:value={$SETTINGS.pageAnimationEnable} text="Enable" /> -->
         <label
             class="flex justify-center items-center space-x-2 border border-primary-500 mt-2 p-2"
         >
-            <input class="checkbox" type="checkbox" bind:checked={$SETTINGS.pageAnimationEnable} />
+            <input class="checkbox" type="checkbox" bind:checked={$SETTINGS.pageAnimation.enable} />
             <p>Enable</p>
         </label>
-        {#if $SETTINGS.pageAnimationEnable}
+        {#if $SETTINGS.pageAnimation.enable}
             <label>
                 <span>Duration <strong>(ms)</strong></span>
-                <input class="input" type="number" bind:value={$SETTINGS.pageAnimationDuration} />
+                <input class="input" type="number" bind:value={$SETTINGS.pageAnimation.duration} />
             </label>
             <label>
                 <span>Transition IN distance</span>
-                <input class="input" type="number" bind:value={$SETTINGS.pageAnimationDistanceIn} />
+                <input
+                    class="input"
+                    type="number"
+                    bind:value={$SETTINGS.pageAnimation.distanceIn}
+                />
             </label>
             <label>
                 <span>Transition OUT distance</span>
                 <input
                     class="input"
                     type="number"
-                    bind:value={$SETTINGS.pageAnimationDistanceOut}
+                    bind:value={$SETTINGS.pageAnimation.distanceOut}
                 />
             </label>
         {/if}
     </div>
 
     <div
-        class="bg-surface-500 bg-opacity-70 border border-primary-500 py-4 px-6 w-full lg:w-3/5 text-center"
+        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5 text-center{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
     >
         <h2 class="h2 font-bold">Having a problem?</h2>
         <div class="h-px w-[90%] bg-secondary-400 my-2 mx-auto" />

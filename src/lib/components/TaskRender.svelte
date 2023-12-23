@@ -2,11 +2,12 @@
     import Button from "./Button.svelte";
     import Checkbox from "./Checkbox.svelte";
     import SupportButton from "./SupportButton.svelte";
+    import { onMount } from "svelte";
     import { writable, type Writable } from "svelte/store";
     import { reset } from "$lib/utils/reset";
-    import { onMount } from "svelte";
-    import { modalStore, type ModalSettings, ProgressBar } from "@skeletonlabs/skeleton";
     import { defaultValue } from "$lib/utils/getDefault";
+    import { SETTINGS } from "$lib/store/settings";
+    import { modalStore, type ModalSettings, ProgressBar } from "@skeletonlabs/skeleton";
     import type { Store, Task } from "$lib/utils/interface";
 
     export let tasks: Record<string, Task>;
@@ -90,12 +91,16 @@
 
         return () => clearInterval(interval);
     });
+
+    const blur = $SETTINGS.task.backgroundBlur ? " backdrop-blur" : "";
 </script>
 
 <div
-    class="mx-auto bg-surface-500 bg-opacity-50 border-collapse table-fixed w-full lg:w-3/4 backdrop-blur lg:py-4"
+    class="mx-auto bg-surface-500 border-collapse table-fixed w-full lg:w-3/4 lg:py-4{blur}"
+    style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
 >
     <div class="text-center">
+        <h2 class="h2 text-blue-300 font-bold">- {label} -</h2>
         <h3 class="h3 text-lime-500">
             [
             <span class="text-blue-500">SEA</span>
