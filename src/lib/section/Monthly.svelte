@@ -1,6 +1,9 @@
 <script lang="ts">
     export let tasks: Record<string, Task>;
 
+    import { SETTINGS } from "$lib/store/settings";
+    export let width = $SETTINGS.task.width;
+
     import TaskRender from "$lib/components/TaskRender.svelte";
 
     import { monthly } from "$lib/store/monthly";
@@ -10,4 +13,4 @@
     const label = "MONTHLY";
 </script>
 
-<TaskRender {tasks} tasksValue={monthly} resetTime={RESET_TIME} max={86400 * 30} {label} />
+<TaskRender {tasks} tasksValue={monthly} resetTime={RESET_TIME} max={86400 * 30} {label} {width} />

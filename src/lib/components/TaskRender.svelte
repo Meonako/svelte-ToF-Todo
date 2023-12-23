@@ -15,6 +15,7 @@
     export let resetTime: Date;
     export let max: number;
     export let label: string;
+    export let width: number;
 
     function toDefaultValue() {
         if (Object.keys($tasksValue).length == 0) {
@@ -96,8 +97,8 @@
 </script>
 
 <div
-    class="mx-auto bg-surface-500 border-collapse table-fixed w-full lg:w-3/4 lg:py-4{blur}"
-    style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
+    class="mx-auto bg-surface-500 border-collapse table-fixed w-full lg:py-4{blur}"
+    style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100}; width: {width}%;"
 >
     <div class="text-center">
         <h2 class="h2 text-blue-300 font-bold">- {label} -</h2>

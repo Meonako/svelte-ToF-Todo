@@ -41,11 +41,8 @@
     <title>Settings | ToF TODOs</title>
 </svelte:head>
 
-<div class="flex flex-col items-center justify-evenly w-full h-full">
-    <div
-        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
-        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
-    >
+<div class="grid grid-cols-1 gap-5 w-full h-full">
+    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
         <h2 class="h2 text-center">General</h2>
         <label
             class="flex justify-center items-center space-x-2 border border-primary-500 mt-2 p-2"
@@ -57,12 +54,17 @@
             <span>Background Opacity</span>
             <input class="input" type="number" bind:value={$SETTINGS.task.backgroundOpacity} />
         </label>
+        <label>
+            <span>Width <strong>(PERCENT)</strong></span>
+            <input class="input" type="number" bind:value={$SETTINGS.task.width} />
+        </label>
+        <label>
+            <span>All Page Width <strong>(PERCENT)</strong></span>
+            <input class="input" type="number" bind:value={$SETTINGS.task.allPageWidth} />
+        </label>
     </div>
 
-    <div
-        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
-        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
-    >
+    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
         <h2 class="h2 text-center">Background</h2>
         <label class="label">
             <span>Type</span>
@@ -142,10 +144,7 @@
         </div>
     </div>
 
-    <div
-        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5{blur}"
-        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
-    >
+    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
         <h2 class="h2 text-center">Page Animation</h2>
         <!-- <Checkbox bind:value={$SETTINGS.pageAnimationEnable} text="Enable" /> -->
         <label
@@ -179,7 +178,7 @@
     </div>
 
     <div
-        class="bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5 text-center{blur}"
+        class="section text-center{blur}"
         style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
     >
         <h2 class="h2 font-bold">Having a problem?</h2>
@@ -190,4 +189,11 @@
             on:click={() => modalStore.trigger(clearStorageModal)}>Here!</button
         >
     </div>
+    <button on:click={() => console.log($SETTINGS)}>DEBUG</button>
 </div>
+
+<style lang="postcss">
+    .section {
+        @apply bg-surface-500 border border-primary-500 py-4 px-6 w-full lg:w-3/5 mx-auto;
+    }
+</style>
