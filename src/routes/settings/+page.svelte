@@ -189,7 +189,6 @@
             on:click={() => modalStore.trigger(clearStorageModal)}>Here!</button
         >
     </div>
-    <button on:click={() => console.log($SETTINGS)}>DEBUG</button>
 </div>
 
 <style lang="postcss">
