@@ -110,11 +110,7 @@
             <span>Settings</span>
         </AppRailAnchor>
 
-        <AppRailAnchor
-            href="https://github.com/Meonako/tof-todo"
-            target="_blank"
-            title="Source"
-        >
+        <AppRailAnchor href="https://github.com/Meonako/tof-todo" target="_blank" title="Source">
             <svelte:fragment slot="lead">
                 <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32">
                     <path

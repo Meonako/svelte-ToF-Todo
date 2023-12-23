@@ -106,7 +106,13 @@
         <h3 class="h3">
             {days ? `${days} days ` : ""}{displayHours} hours {minutes} minutes {seconds} seconds remaining
         </h3>
-        <ProgressBar class="w-11/12" track={"bg-primary-900"} meter={"bg-primary-600"} value={$secondsDiff} {max} />
+        <ProgressBar
+            class="w-11/12"
+            track={"bg-primary-900"}
+            meter={"bg-primary-600"}
+            value={$secondsDiff}
+            {max}
+        />
         <div class="flex flex-row">
             <button
                 class="btn variant-ghost-error active:variant-filled-error lg:hover:variant-filled-error w-full"
@@ -159,9 +165,7 @@
                         {#each task.label as value, idx}
                             <Checkbox
                                 bind:value={$tasksValue.Value[name][idx]}
-                                text={typeof task.label == "object" && value
-                                    ? value
-                                    : ""}
+                                text={typeof task.label == "object" && value ? value : ""}
                                 single={true}
                             />
                         {/each}

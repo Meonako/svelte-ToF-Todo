@@ -13,6 +13,10 @@ export const DAILY: Record<string, Task> = {
         type: "number",
         max: 8
     },
+    "Beast Brawl Arena": {
+        type: "number",
+        max: 20
+    },
     "Joint Operation First Clear": {
         type: "boolean"
     },
@@ -83,6 +87,14 @@ export const WEEKLY: Record<string, Task> = {
     },
     "Domain 9 Fountain Pillar": {
         type: "boolean"
+    },
+    "Gift Shop": {
+        type: "booleanList",
+        label: [
+            "[Domain 9] Ignisville: Gift Merchant",
+            "[Domain 9] Joltville: Tianhe Bazaar",
+            "[Domain 9] Marshville: Langgan Cottage"
+        ]
     },
     "Artificial Island": {
         type: "booleanList",
