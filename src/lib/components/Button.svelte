@@ -21,7 +21,7 @@
     }
 </script>
 
-<div class="container text-center lg:w-3/4">
+<div class="container text-center">
     <h4 class="h3 text-secondary-300 mb-1">
         <strong>{value}</strong> / <strong>{max}</strong>
     </h4>
@@ -62,5 +62,11 @@
     >
         Max
     </button>
-    <ProgressBar track={"bg-primary-900"} meter={"bg-primary-600"} value={$progress} {max} />
+    <ProgressBar
+        class="w-[85%] mx-auto"
+        track={"bg-primary-900"}
+        meter={"bg-primary-600"}
+        value={$progress}
+        {max}
+    />
 </div>
