@@ -28,35 +28,20 @@ export function reset(data: Store): Store {
     return data;
 }
 
-function resetObject(data: Object): Object {
+function resetObject(data: Record<string, any>): Record<string, any> {
     for (const [key, value] of Object.entries(data)) {
         if (value.contructor == Object) {
-            // @ts-ignore
             data[key] = resetObject(value);
             continue;
         } else if (Array.isArray(value)) {
-            // @ts-ignore
             data[key] = resetArray(value);
             continue;
         }
 
-        switch (typeof value) {
-            case "number":
-                // @ts-ignore
-                data[key] = 0;
-                break;
-            case "boolean":
-                // @ts-ignore
-                data[i] = false;
-                break;
-            case "string":
-                break;
-            default:
-                console.log(`Unknown Type: ${typeof value}: `, value);
-        }
+        data[key] = defaultValue(value);
     }
 
-    return {};
+    return data;
 }
 
 function resetArray(data: any[]): any[] {
@@ -64,30 +49,29 @@ function resetArray(data: any[]): any[] {
         if (data[i] == null || typeof data[i] == "undefined") continue;
 
         if (data[i].contructor == Object) {
-            // @ts-ignore
-            data[i] = resetObject(value);
+            data[i] = resetObject(data[i]);
             continue;
         } else if (Array.isArray(data[i])) {
-            // @ts-ignore
             data[i] = resetArray(data[i]);
             continue;
         }
 
-        switch (typeof data[i]) {
-            case "number":
-                // @ts-ignore
-                data[i] = 0;
-                break;
-            case "boolean":
-                // @ts-ignore
-                data[i] = false;
-                break;
-            case "string":
-                break;
-            default:
-                console.log(`Unknown Type: ${typeof data[i]}: `, data[i]);
-        }
+        data[i] = defaultValue(data[i]);
     }
 
     return data;
+}
+
+function defaultValue(data: any) {
+    switch (typeof data) {
+        case "number":
+            return 0;
+        case "boolean":
+            return false;
+        case "string":
+            return parseInt(data);
+        default:
+            console.log("Unknown Type:", data);
+            return null;
+    }
 }

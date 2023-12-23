@@ -1,5 +1,6 @@
 import { browser } from "$app/environment";
 import { localStorageStore } from "@skeletonlabs/skeleton";
+import { setMissingValueFromDefault, removeUnused } from "$lib/utils/object";
 import type { Writable } from "svelte/store";
 
 const KEY = "settings";
@@ -42,26 +43,11 @@ function init(): Writable<Settings> {
 
     settings.update((value) => {
         // @ts-ignore
-        value = setDefaultValue(value, defaultSettings);
+        value = setMissingValueFromDefault(value, defaultSettings);
+        // @ts-ignore
+        value = removeUnused(value, defaultSettings);
         return value;
     });
 
     return settings;
-}
-
-function setDefaultValue(
-    target: Record<string, any>,
-    def: Record<string, any>
-): Record<string, any> {
-    for (const [name, task] of Object.entries(def)) {
-        if (typeof task == "object") {
-            target[name] = setDefaultValue(target[name], task);
-        } else if (target[name]) {
-            continue;
-        } else {
-            target[name] = task;
-        }
-    }
-
-    return target;
 }

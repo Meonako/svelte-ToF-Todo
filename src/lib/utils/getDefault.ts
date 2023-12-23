@@ -16,7 +16,7 @@ export function defaultValue(v: string, len?: number): any {
                 boolList.push(false);
             }
 
-            return [];
+            return boolList;
         default:
             return "Unknown type: " + v;
     }
