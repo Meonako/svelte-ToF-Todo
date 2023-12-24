@@ -98,7 +98,8 @@
 
 <div
     class="mx-auto bg-surface-500 border-collapse table-fixed w-full lg:py-4{blur}"
-    style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100}; width: {width}%;"
+    style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity /
+        100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px; width: {width}%;"
 >
     <div class="text-center">
         <h2 class="h2 text-blue-300 font-bold">- {label} -</h2>

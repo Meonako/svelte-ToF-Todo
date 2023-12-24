@@ -17,6 +17,7 @@ type Settings = {
         allPageWidth: number;
         progressBarWidth: number;
         backgroundBlur: boolean;
+        backgroundBlurStrength: number;
         backgroundOpacity: number;
     };
 };
@@ -33,6 +34,7 @@ export const defaultSettings: Settings = {
         allPageWidth: 95,
         progressBarWidth: 85,
         backgroundBlur: true,
+        backgroundBlurStrength: 8,
         backgroundOpacity: 50
     }
 };

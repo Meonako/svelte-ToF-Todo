@@ -43,7 +43,11 @@
 </svelte:head>
 
 <div class="grid grid-cols-1 gap-5 w-full h-full">
-    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
+    <div
+        class="section{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity /
+            100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px"
+    >
         <h2 class="h2 text-center">General</h2>
         <label
             class="flex justify-center items-center space-x-2 border border-primary-500 mt-2 p-2"
@@ -51,6 +55,12 @@
             <input class="checkbox" type="checkbox" bind:checked={$SETTINGS.task.backgroundBlur} />
             <p>Tasks Background Blur</p>
         </label>
+        {#if $SETTINGS.task.backgroundBlur}
+            <SettingsSlider
+                label={"Background Blur Strength"}
+                bind:value={$SETTINGS.task.backgroundBlurStrength}
+            />
+        {/if}
         <SettingsSlider
             label={"Background Opacity"}
             bind:value={$SETTINGS.task.backgroundOpacity}
@@ -66,7 +76,11 @@
         />
     </div>
 
-    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
+    <div
+        class="section{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity /
+            100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px"
+    >
         <h2 class="h2 text-center">Background</h2>
         <label class="label">
             <span>Type</span>
@@ -146,7 +160,11 @@
         </div>
     </div>
 
-    <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
+    <div
+        class="section{blur}"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity /
+            100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px"
+    >
         <h2 class="h2 text-center">Page Animation</h2>
         <!-- <Checkbox bind:value={$SETTINGS.pageAnimationEnable} text="Enable" /> -->
         <label
@@ -181,7 +199,8 @@
 
     <div
         class="section text-center{blur}"
-        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};"
+        style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity /
+            100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px"
     >
         <h2 class="h2 font-bold">Having a problem?</h2>
         <div class="h-px w-[90%] bg-secondary-400 my-2 mx-auto" />

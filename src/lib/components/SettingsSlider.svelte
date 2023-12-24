@@ -5,9 +5,19 @@
     export let max = 100;
 
     import RangeSlider from "./skeleton/RangeSlider.svelte";
+    import { fly } from "svelte/transition";
+    import { SETTINGS } from "$lib/store/settings";
 </script>
 
-<div class="border border-secondary-500 p-4 my-2">
+<div
+    class="border border-secondary-500 p-4 my-2"
+    in:fly={{
+        x: -200,
+        duration: $SETTINGS.pageAnimation.duration,
+        delay: $SETTINGS.pageAnimation.duration
+    }}
+    out:fly={{ x: 200, duration: $SETTINGS.pageAnimation.duration }}
+>
     <RangeSlider name="background-opacity" bind:value {min} {max} step={1} padding={"pb-2"}>
         <div class="flex justify-between items-center">
             <div class="flex flex-row justify-between w-full">
