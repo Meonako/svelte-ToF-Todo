@@ -15,6 +15,7 @@ type Settings = {
     task: {
         width: number;
         allPageWidth: number;
+        progressBarWidth: number;
         backgroundBlur: boolean;
         backgroundOpacity: number;
     };
@@ -30,6 +31,7 @@ export const defaultSettings: Settings = {
     task: {
         width: 75,
         allPageWidth: 95,
+        progressBarWidth: 85,
         backgroundBlur: true,
         backgroundOpacity: 50
     }

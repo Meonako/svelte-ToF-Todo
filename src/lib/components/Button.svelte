@@ -4,7 +4,8 @@
 
     import { tweened } from "svelte/motion";
     import { cubicOut } from "svelte/easing";
-    import { ProgressBar } from "@skeletonlabs/skeleton";
+    import ProgressBar from "$lib/components/skeleton/ProgressBar.svelte";
+    import { SETTINGS } from "$lib/store/settings";
 
     const progress = tweened(0, {
         duration: 300,
@@ -63,7 +64,8 @@
         Max
     </button>
     <ProgressBar
-        class="w-[85%] mx-auto"
+        style="width: {$SETTINGS.task.progressBarWidth}%"
+        class="mx-auto"
         track={"bg-primary-900"}
         meter={"bg-primary-600"}
         value={$progress}

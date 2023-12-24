@@ -2,6 +2,7 @@
     import { VIDEO_DEFAULT, IMAGE_DEFAULT, backgroundType } from "$lib/store/background";
     import { SETTINGS } from "$lib/store/settings";
     import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+    import SettingsSlider from "$lib/components/SettingsSlider.svelte";
 
     let selected = $backgroundType.type;
     let link = "";
@@ -50,18 +51,19 @@
             <input class="checkbox" type="checkbox" bind:checked={$SETTINGS.task.backgroundBlur} />
             <p>Tasks Background Blur</p>
         </label>
-        <label>
-            <span>Background Opacity</span>
-            <input class="input" type="number" bind:value={$SETTINGS.task.backgroundOpacity} />
-        </label>
-        <label>
-            <span>Width <strong>(PERCENT)</strong></span>
-            <input class="input" type="number" bind:value={$SETTINGS.task.width} />
-        </label>
-        <label>
-            <span>All Page Width <strong>(PERCENT)</strong></span>
-            <input class="input" type="number" bind:value={$SETTINGS.task.allPageWidth} />
-        </label>
+        <SettingsSlider
+            label={"Background Opacity"}
+            bind:value={$SETTINGS.task.backgroundOpacity}
+        />
+        <SettingsSlider label={"Tasks Width"} bind:value={$SETTINGS.task.width} />
+        <SettingsSlider
+            label={"Tasks in All Page Width"}
+            bind:value={$SETTINGS.task.allPageWidth}
+        />
+        <SettingsSlider
+            label={"Tasks Type BUTTONS Progress Bar Width"}
+            bind:value={$SETTINGS.task.progressBarWidth}
+        />
     </div>
 
     <div class="section{blur}" style="--tw-bg-opacity: {$SETTINGS.task.backgroundOpacity / 100};">
