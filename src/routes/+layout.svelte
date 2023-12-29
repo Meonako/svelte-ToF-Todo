@@ -1,12 +1,6 @@
 <script lang="ts">
     export let data;
 
-    // The ordering of these imports is critical to your app working properly
-    // import '@skeletonlabs/skeleton/themes/theme-rocket.css';
-    import "../theme.postcss";
-    // If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
-    import "@skeletonlabs/skeleton/styles/skeleton.css";
-    // Most of your app wide CSS should be put in this file
     import "../app.postcss";
 
     import { AppShell, Modal, type ModalComponent } from "@skeletonlabs/skeleton";
@@ -14,21 +8,32 @@
     import Background from "$lib/components/Background.svelte";
     import {
         Toast,
-        toastStore,
-        modalStore,
+        initializeStores,
+        getToastStore,
+        getModalStore,
         type ToastSettings,
         type ModalSettings
     } from "@skeletonlabs/skeleton";
     import AddTask from "$lib/components/modal/AddTask.svelte";
     import { fly } from "svelte/transition";
     import { SETTINGS } from "$lib/store/settings";
+    import { setTheme } from "$lib/utils/theme";
+    import { onMount } from "svelte";
 
+    onMount(() => {
+        setTheme($SETTINGS.theme);
+    });
+
+    initializeStores();
+
+    const modalStore = getModalStore();
     const modal: ModalSettings = {
         type: "alert",
         title: "Missing Features",
         body: "<br>- Reset sync with server<br>- Progress Bar turn red when time is about to run out"
     };
 
+    const toastStore = getToastStore();
     const t: ToastSettings = {
         message:
             "This app is Work In Progress. Still missing some key features and not ready to use",

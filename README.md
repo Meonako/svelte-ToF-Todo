@@ -7,6 +7,6 @@ An attemp to remind myself what to do in Tower of Fantasy.
 
 # Roadmap
 
-- [ ] Custom time offset
-- [ ] Reset prompt when time is up
-- [ ] Better remaining time indicator
+-   [ ] Custom time offset
+-   [ ] Reset prompt when time is up
+-   [ ] Better remaining time indicator

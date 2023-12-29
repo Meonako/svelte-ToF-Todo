@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { modalStore } from "@skeletonlabs/skeleton";
+    import { getModalStore } from "@skeletonlabs/skeleton";
     import type { SvelteComponent } from "svelte";
     import type { Task } from "$lib/utils/interface";
     import Button from "../Button.svelte";
@@ -7,6 +7,8 @@
     import SupportButton from "../SupportButton.svelte";
 
     export let parent: SvelteComponent;
+
+    const modalStore = getModalStore();
 
     let category = $modalStore[0].meta.category;
     let taskName = "";

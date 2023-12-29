@@ -20,6 +20,7 @@ type Settings = {
         backgroundBlurStrength: number;
         backgroundOpacity: number;
     };
+    theme: string;
 };
 
 export const defaultSettings: Settings = {
@@ -36,7 +37,8 @@ export const defaultSettings: Settings = {
         backgroundBlur: true,
         backgroundBlurStrength: 8,
         backgroundOpacity: 50
-    }
+    },
+    theme: "custom"
 };
 
 export const SETTINGS = init();

@@ -7,7 +7,7 @@
     import { reset } from "$lib/utils/reset";
     import { defaultValue } from "$lib/utils/getDefault";
     import { SETTINGS } from "$lib/store/settings";
-    import { modalStore, type ModalSettings, ProgressBar } from "@skeletonlabs/skeleton";
+    import { getModalStore, type ModalSettings, ProgressBar } from "@skeletonlabs/skeleton";
     import type { Store, Task } from "$lib/utils/interface";
 
     export let tasks: Record<string, Task>;
@@ -16,6 +16,8 @@
     export let max: number;
     export let label: string;
     export let width: number;
+
+    const modalStore = getModalStore();
 
     function toDefaultValue() {
         if (Object.keys($tasksValue).length == 0) {

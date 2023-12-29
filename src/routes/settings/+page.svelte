@@ -1,8 +1,11 @@
 <script lang="ts">
     import { VIDEO_DEFAULT, IMAGE_DEFAULT, backgroundType } from "$lib/store/background";
     import { SETTINGS } from "$lib/store/settings";
-    import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+    import { getModalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import SettingsSlider from "$lib/components/SettingsSlider.svelte";
+    import { setTheme } from "$lib/utils/theme";
+
+    const modalStore = getModalStore();
 
     let selected = $backgroundType.type;
     let link = "";
@@ -49,6 +52,18 @@
             100}; --tw-backdrop-blur: blur({$SETTINGS.task.backgroundBlurStrength}px"
     >
         <h2 class="h2 text-center">General</h2>
+        <label class="label">
+            <span>Theme</span>
+            <select
+                class="select"
+                bind:value={$SETTINGS.theme}
+                on:change={() => setTheme($SETTINGS.theme)}
+            >
+                <option value="rocket">Rocket</option>
+                <option value="gold-nouveau">Gold Nouveau</option>
+                <option value="custom">Dev's "Carefully" select</option>
+            </select>
+        </label>
         <label
             class="flex justify-center items-center space-x-2 border border-primary-500 mt-2 p-2"
         >
